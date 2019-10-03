@@ -1,40 +1,38 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Material extends Model {
+class Lot extends Model {
   static init(sequelize) {
     super.init(
       {
-        MATE_ID: {
+        LOT_ID: {
           type: Sequelize.INTEGER,
           primaryKey: true,
           autoIncrement: true,
           allowNull: false,
         },
-        MATE_NAME: {
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
-        MATE_PACKING: {
+        LOT_QUANTITY: {
           type: Sequelize.DECIMAL,
           allowNull: false,
         },
-        MATE_AMOUNT: {
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
-        MATE_OBSERVATION: {
-          type: Sequelize.STRING,
+        LOT_VALIDITY: {
+          type: Sequelize.DATE,
           allowNull: false,
         },
       },
       {
         sequelize,
         timestamps: false, // Incluído para não usar createdAt e updatedAt. Se for necessário me avisa pra atualizar a base
-        tableName: 'MATERIAL',
+        tableName: 'LOT',
       }
     );
     return this;
   }
+
+  static associate(models) {
+    this.belongsTo(models.Material, {
+      foreignKey: 'MATE_ID',
+    });
+  }
 }
 
-export default Material;
+export default Lot;

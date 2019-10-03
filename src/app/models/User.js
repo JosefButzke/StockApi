@@ -1,40 +1,40 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Material extends Model {
+class User extends Model {
   static init(sequelize) {
     super.init(
       {
-        MATE_ID: {
+        USER_ID: {
           type: Sequelize.INTEGER,
           primaryKey: true,
           autoIncrement: true,
           allowNull: false,
         },
-        MATE_NAME: {
+        USER_NAME: {
           type: Sequelize.STRING,
           allowNull: false,
         },
-        MATE_PACKING: {
-          type: Sequelize.DECIMAL,
-          allowNull: false,
-        },
-        MATE_AMOUNT: {
+        USER_LOGIN: {
           type: Sequelize.STRING,
           allowNull: false,
         },
-        MATE_OBSERVATION: {
+        USER_PASSWORD: {
           type: Sequelize.STRING,
+          allowNull: false,
+        },
+        USER_TYPE: {
+          type: Sequelize.INTEGER,
           allowNull: false,
         },
       },
       {
         sequelize,
         timestamps: false, // Incluído para não usar createdAt e updatedAt. Se for necessário me avisa pra atualizar a base
-        tableName: 'MATERIAL',
+        tableName: 'USER',
       }
     );
     return this;
   }
 }
 
-export default Material;
+export default User;

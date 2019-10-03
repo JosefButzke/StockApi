@@ -12,8 +12,8 @@ class MaterialController {
   }
 
   async update(req, res) {
-    const { id } = req.body; //  const { id } = req.body; === cons id = req.body.id
-    const materialExists = await Material.findByPk(id);
+    const { MATE_ID } = req.body; //  const { id } = req.body; === cons id = req.body.id
+    const materialExists = await Material.findByPk(MATE_ID);
 
     if (!materialExists) {
       res.status(400).json('Material não existe');
@@ -25,9 +25,9 @@ class MaterialController {
   }
 
   async destroy(req, res) {
-    const { id } = req.body;
+    const { MATE_ID } = req.body;
 
-    const materialExists = await Material.findByPk(id);
+    const materialExists = await Material.findByPk(MATE_ID);
 
     if (!materialExists) {
       res.status(400).json('Material não existe');
