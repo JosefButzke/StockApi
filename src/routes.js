@@ -11,10 +11,11 @@ routes.get('/', (req, res) => {
   res.json({ message: 'API WORKING' });
 });
 
-routes.get('/materiais', MaterialController.index);
+routes.get('/materiais/:id', MaterialController.show); // http://localhost:3333/materiais/3
+routes.get('/materiais', MaterialController.index); // http://localhost:3333/materiais
 routes.post('/materiais', MaterialController.store);
-routes.put('/materiais', MaterialController.update);
-routes.delete('/materiais', MaterialController.destroy);
+routes.put('/materiais/:id', MaterialController.update);
+routes.delete('/materiais/:id', MaterialController.destroy);
 
 routes.get('/users', UserController.index);
 routes.post('/users', UserController.store);

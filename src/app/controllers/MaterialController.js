@@ -1,6 +1,12 @@
 import Material from '../models/Material';
 
 class MaterialController {
+  async show(req, res) {
+    const { id } = req.params;
+    const response = await Material.findOne({ where: { MATE_ID: id } });
+    return res.json(response);
+  }
+
   async index(req, res) {
     const response = await Material.findAll();
     return res.json(response);
@@ -12,8 +18,8 @@ class MaterialController {
   }
 
   async update(req, res) {
-    const { MATE_ID } = req.body; //  const { id } = req.body; === cons id = req.body.id
-    const materialExists = await Material.findByPk(MATE_ID);
+    const { id } = req.params; //  const { id } = req.params; === cons id = req.params.id
+    const materialExists = await Material.findByPk(id);
 
     if (!materialExists) {
       res.status(400).json('Material não existe');
@@ -25,9 +31,9 @@ class MaterialController {
   }
 
   async destroy(req, res) {
-    const { MATE_ID } = req.body;
+    const { id } = req.params; //  const { id } = req.params; === cons id = req.params.id
 
-    const materialExists = await Material.findByPk(MATE_ID);
+    const materialExists = await Material.findByPk(id);
 
     if (!materialExists) {
       res.status(400).json('Material não existe');

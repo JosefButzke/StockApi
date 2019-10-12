@@ -26,6 +26,11 @@ class Material extends Model {
           type: Sequelize.STRING,
           allowNull: false,
         },
+        MATE_ACTIVE: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: true,
+          allowNull: false,
+        },
       },
       {
         sequelize,
